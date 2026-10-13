@@ -6,7 +6,11 @@
 }
 
 body {
-    background-color: #0f172a;
+    /* Background එකට Arduino ෆොටෝ එකක් සහ ඩාක් ලේයර් එකක් එකතු කිරීම */
+    background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('game.jfif');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: #f8fafc;
     line-height: 1.6;
 }
@@ -17,10 +21,11 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1.2rem 8%;
-    background-color: #1e293b;
+    background-color: rgba(30, 41, 59, 0.95);
     position: sticky;
     top: 0;
     z-index: 100;
+    backdrop-filter: blur(5px);
 }
 
 .logo {
@@ -67,7 +72,6 @@ nav a:hover {
 .hero {
     text-align: center;
     padding: 60px 20px;
-    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
 }
 
 .hero h1 {
@@ -97,16 +101,17 @@ nav a:hover {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 25px;
 }
 
 .project-card {
-    background-color: #1e293b;
+    background-color: rgba(30, 41, 59, 0.95);
     border-radius: 10px;
     padding: 25px;
     border: 1px solid #334155;
     position: relative;
+    backdrop-filter: blur(5px);
 }
 
 .badge {
@@ -139,14 +144,34 @@ nav a:hover {
 
 .project-card ul {
     margin-left: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #94a3b8;
     font-size: 0.9rem;
+}
+
+/* Wiring Box & Text Fixes */
+.wiring-box {
+    background: #0f172a;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+    border: 1px dashed #38bdf8;
+}
+
+.wiring-box ul {
+    list-style-type: disc;
+    padding-left: 15px;
+}
+
+.wiring-box li {
+    margin-bottom: 8px;
+    line-height: 1.8; /* අකුරු උඩින් යටින් කැඩී යාම වැළැක්වීමට මෙන්න මේ Line Height එක දුන්නා */
 }
 
 .card-links {
     display: flex;
     gap: 10px;
+    margin-top: 15px;
 }
 
 .btn {
@@ -170,13 +195,12 @@ nav a:hover {
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #1e293b;
+    background-color: rgba(30, 41, 59, 0.95);
     color: #64748b;
     font-size: 0.9rem;
     margin-top: 40px;
 }
 
-/* Helper Class for Language Switching */
 .hidden {
     display: none !important;
 }

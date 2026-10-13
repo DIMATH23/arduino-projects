@@ -15,7 +15,7 @@
             <ul>
                 <li><a href="#about" class="lang-si">මම ගැන</a><a href="#about" class="lang-en hidden">About</a></li>
                 <li><a href="#projects" class="lang-si">ව්‍යාපෘති / Games</a><a href="#projects" class="lang-en hidden">Projects & Games</a></li>
-                <li><a href="#contact" class="lang-si">සම්බන්ධ වන්න</a><a href="#contact" class="lang-en hidden">Contact</a></li>
+                <li><a href="#contact" class="lang-si">ප්‍රශ්න / Q&A</a><a href="#contact" class="lang-en hidden">Q&A</a></li>
             </ul>
         </nav>
         <div class="lang-toggle">
@@ -30,7 +30,7 @@
         <h1 class="lang-en hidden">Welcome to My Arduino Games & Projects World 🚀</h1>
         
         <p class="lang-si">මම Arduino, Microcontrollers සහ Sensor එකතු කරමින් නිර්මාණය කළ Games සහ Hardware Projects මෙතැනින් ඔබට බලාගත හැක.</p>
-        <p class="lang-en hidden">Explore my collection of custom Arduino games, robotics, and microcontroller hardware projects.</p>
+        <p class="lang-en hidden">Explore my collection of custom Arduino games and hardware projects.</p>
     </section>
 
     <!-- Projects Section -->
@@ -40,50 +40,117 @@
 
         <div class="projects-grid">
             
-            <!-- Project Card 1 -->
+            <!-- Project Card -->
             <div class="project-card">
                 <span class="badge">Game</span>
+                
+                <img src="game.jfif" alt="Arduino Game" style="width:100%; border-radius:8px; margin-bottom:15px; height: 180px; object-fit: cover;">
+
                 <h3 class="lang-si">OLED Screen Tabletop Game</h3>
                 <h3 class="lang-en hidden">OLED Screen Tabletop Game</h3>
                 
-                <p class="lang-si">Arduino Uno, OLED Display සහ Ultrasonic Sensors භාවිතයෙන් නිර්මාණය කළ Game එකක්.</p>
-                <p class="lang-en hidden">Interactive mini-game built using Arduino Uno, OLED Display, and Ultrasonic sensors.</p>
+                <p class="lang-si">Arduino Uno සහ OLED Display භාවිතයෙන් නිර්මාණය කළ Game එකක්.</p>
+                <p class="lang-en hidden">Interactive mini-game built using Arduino Uno and OLED Display.</p>
                 
                 <h4>Components Used:</h4>
                 <ul>
-                    <li>Arduino Uno / ESP32</li>
+                    <li>Arduino Uno / Nano</li>
                     <li>0.96" OLED Display (I2C)</li>
-                    <li>Push Buttons / Sensors</li>
+                    <li>Push Buttons</li>
                 </ul>
 
+                <!-- 🔌 Wiring Guide -->
+                <div class="wiring-box">
+                    <h4 style="color: #38bdf8; margin-bottom: 8px;">🔌 වයර් සම්බන්ධ කරන හැටි (Wiring Guide):</h4>
+                    <ul>
+                        <li><b>OLED VCC</b> ➔ Arduino 5V හෝ 3.3V වෙත</li>
+                        <li><b>OLED GND</b> ➔ Arduino GND වෙත</li>
+                        <li><b>OLED SCL</b> ➔ Arduino A5 (သို့မဟုတ် SCL Pin) වෙත</li>
+                        <li><b>OLED SDA</b> ➔ Arduino A4 (သို့မဟုတ် SDA Pin) වෙත</li>
+                        <li><b>Push Button</b> ➔ Digital Pins (උදා: Pin 2 සහ GND අතර)</li>
+                    </ul>
+                </div>
+
+                <!-- 📜 Arduino Code -->
+                <details style="margin-bottom: 15px;">
+                    <summary style="color:#00d2df; cursor:pointer; font-weight: bold; margin-bottom: 8px;">📜 View Arduino Code</summary>
+                    <pre style="background:#0f172a; padding:12px; border-radius:6px; color:#a5f3fc; overflow-x:auto; font-size: 0.8rem; max-height: 200px;">
+<code>
+#include &lt;Wire.h&gt;
+#include &lt;Adafruit_GFX.h&gt;
+#include &lt;Adafruit_SSD1306.h&gt;
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET    -1
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+void setup() {
+  Serial.begin(9600);
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    for(;;);
+  }
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(10, 25);
+  display.println(F("Arduino Game Start!"));
+  display.display();
+}
+
+void loop() {
+  // Game loop code here
+}
+</code>
+                    </pre>
+                </details>
+
                 <div class="card-links">
-                    <a href="#" class="btn">Source Code</a>
-                    <a href="#" class="btn btn-outline">Circuit Diagram</a>
+                    <a href="game.jfif" target="_blank" class="btn">View Full Photo</a>
                 </div>
             </div>
 
-            <!-- Project Card 2 -->
-            <div class="project-card">
-                <span class="badge">Hardware</span>
-                <h3 class="lang-si">Wi-Fi Web Controlled Robot / Car</h3>
-                <h3 class="lang-en hidden">Wi-Fi Web Controlled Robot / Car</h3>
-                
-                <p class="lang-si">ESP32 සහ L298N Motor Driver භාවිතයෙන් Web Dashboard එකක් මගින් පාලනය වන වාහනයක්.</p>
-                <p class="lang-en hidden">Web dashboard-controlled vehicle powered by ESP32 and L298N Motor Driver.</p>
+        </div>
+    </section>
 
-                <h4>Components Used:</h4>
-                <ul>
-                    <li>ESP32 Development Board</li>
-                    <li>L298N Motor Driver</li>
-                    <li>Ultrasonic Sensor & Horn</li>
-                </ul>
+    <!-- 👤 User Login & Comment System -->
+    <section id="contact" style="padding: 50px 8%; text-align: center; background: rgba(30, 41, 59, 0.6); border-top: 1px solid #334155; margin-top: 40px;">
+        <h2 class="lang-si" style="color: #f1f5f9; margin-bottom: 15px;">ප්‍රශ්න සහ සාකච්ඡා (Q&A Community)</h2>
+        <h2 class="lang-en hidden" style="color: #f1f5f9; margin-bottom: 15px;">Q&A Community</h2>
+        
+        <p class="lang-si" style="color: #94a3b8; margin-bottom: 30px;">ඔබගේ නම සහ රට ඇතුළත් කර Login වී ප්‍රශ්න යොමු කරන්න.</p>
+        <p class="lang-en hidden" style="color: #94a3b8; margin-bottom: 30px;">Enter your name and country to post comments.</p>
 
-                <div class="card-links">
-                    <a href="#" class="btn">Source Code</a>
-                    <a href="#" class="btn btn-outline">Circuit Diagram</a>
-                </div>
+        <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+            
+            <!-- Step 1: Login Box (නම සහ රට දමා ඇතුළුවීමට) -->
+            <div id="loginBox" style="background: #1e293b; padding: 20px; border-radius: 8px; border: 1px solid #334155; margin-bottom: 30px;">
+                <h3 style="color: #38bdf8; margin-bottom: 15px; font-size: 1.1rem;">👤 ගිණුමකට පිවිසෙන්න (Enter Details)</h3>
+                <form id="loginForm" style="display: flex; flex-direction: column; gap: 12px;">
+                    <input type="text" id="loginName" placeholder="ඔබගේ නම / Your Name" required style="padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff;">
+                    <input type="text" id="loginCountry" placeholder="ඔබගේ රට / Your Country (උදා: Sri Lanka)" required style="padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff;">
+                    <button type="submit" class="btn" style="padding: 10px; cursor: pointer; border: none; font-size: 0.95rem; border-radius: 6px;">Login & Continue</button>
+                </form>
             </div>
 
+            <!-- Step 2: Comment Box (Login වූ පසු පෙන්වන කොටස - මුලදී වැසී ඇත) -->
+            <div id="commentSection" style="display: none;">
+                <div style="background: #1e293b; padding: 15px; border-radius: 8px; border: 1px solid #334155; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="color: #38bdf8; font-weight: bold;" id="userDisplay">Welcome</span>
+                    <button onclick="logoutUser()" style="background: transparent; border: 1px solid #ef4444; color: #ef4444; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">Logout</button>
+                </div>
+
+                <form id="commentForm" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+                    <textarea id="userComment" rows="4" placeholder="ඔබගේ ප්‍රශ්නය හෝ අදහස මෙහි ලියන්න... / Type your question here..." required style="padding: 12px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #fff;"></textarea>
+                    
+                    <button type="submit" class="btn" style="padding: 12px; cursor: pointer; border: none; font-size: 1rem; border-radius: 6px;">ප්‍රශ්නය යොමු කරන්න / Post Comment</button>
+                </form>
+            </div>
+
+            <!-- Comments Display Area (ප්‍රශ්න වැටෙන තැන) -->
+            <div id="commentsList" style="display: flex; flex-direction: column; gap: 15px; text-align: left;">
+                <!-- Comments will appear here -->
+            </div>
         </div>
     </section>
 
@@ -93,6 +160,49 @@
         <p class="lang-en hidden">© 2026 Arduino Projects - All Rights Reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- ⚙️ JavaScript for Login & Comments -->
+    <script>
+        let currentUser = { name: '', country: '' };
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            currentUser.name = document.getElementById('loginName').value;
+            currentUser.country = document.getElementById('loginCountry').value;
+
+            // Hide login box, show comment section
+            document.getElementById('loginBox').style.display = 'none';
+            document.getElementById('commentSection').style.display = 'block';
+            document.getElementById('userDisplay').innerText = `👤 ${currentUser.name} (${currentUser.country})`;
+        });
+
+        function logoutUser() {
+            document.getElementById('loginBox').style.display = 'block';
+            document.getElementById('commentSection').style.display = 'none';
+            document.getElementById('loginName').value = '';
+            document.getElementById('loginCountry').value = '';
+        }
+
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const text = document.getElementById('userComment').value;
+            
+            const commentBox = document.createElement('div');
+            commentBox.style.background = '#1e293b';
+            commentBox.style.padding = '15px';
+            commentBox.style.borderRadius = '8px';
+            commentBox.style.border = '1px solid #334155';
+            
+            commentBox.innerHTML = `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <h4 style="color: #38bdf8; font-size: 0.95rem;">${currentUser.name} <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">(${currentUser.country})</span></h4>
+                    <span style="font-size: 0.75rem; color: #64748b;">Just now</span>
+                </div>
+                <p style="color: #cbd5e1; font-size: 0.95rem;">${text}</p>
+            `;
+            
+            document.getElementById('commentsList').prepend(commentBox);
+            document.getElementById('userComment').value = '';
+        });
+    </script>
 </body>
 </html>

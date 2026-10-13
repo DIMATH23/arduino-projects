@@ -3,205 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arduino Gaming & Projects</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Arduino Lab | Dimath</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase SDKs (Compat version for HTML script tags) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandTeal: '#005975',
+                        brandTealDark: '#004258',
+                        brandAccent: '#0083a9',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
+<body class="bg-white text-gray-900 font-sans antialiased flex flex-col min-h-screen">
 
-    <!-- Navigation Header -->
-    <header>
-        <div class="logo">⚡ Arduino Lab</div>
-        <nav>
-            <ul>
-                <li><a href="#about" class="lang-si">මම ගැන</a><a href="#about" class="lang-en hidden">About</a></li>
-                <li><a href="#projects" class="lang-si">ව්‍යාපෘති / Games</a><a href="#projects" class="lang-en hidden">Projects & Games</a></li>
-                <li><a href="#contact" class="lang-si">ප්‍රශ්න / Q&A</a><a href="#contact" class="lang-en hidden">Q&A</a></li>
-            </ul>
-        </nav>
-        <div class="lang-toggle">
-            <button id="btn-si" class="active" onclick="switchLang('si')">සිංහල</button>
-            <button id="btn-en" onclick="switchLang('en')">English</button>
+    <header class="bg-brandTeal text-white sticky top-0 z-40 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+            <a href="#" class="text-xl font-extrabold tracking-tight">⚡ Arduino Lab by Dimath</a>
+            <div class="text-xs bg-brandTealDark px-3 py-1 rounded">
+                <span id="headerUserStatus">Not Logged In</span>
+            </div>
         </div>
     </header>
 
-    <!-- Hero / About Section -->
-    <section id="about" class="hero">
-        <h1 class="lang-si">ආයුබෝවන්! මගේ Arduino Games & Projects වෙබ් අඩවියට සාදරයෙන් පිළිගනිමි 🚀</h1>
-        <h1 class="lang-en hidden">Welcome to My Arduino Games & Projects World 🚀</h1>
+    <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full space-y-8">
         
-        <p class="lang-si">මම Arduino, Microcontrollers සහ Sensor එකතු කරමින් නිර්මාණය කළ Games සහ Hardware Projects මෙතැනින් ඔබට බලාගත හැක.</p>
-        <p class="lang-en hidden">Explore my collection of custom Arduino games and hardware projects.</p>
-    </section>
+        <!-- About Section -->
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-3">
+            <h1 class="text-2xl font-bold text-gray-900">ආයුබෝවන්! මම Dimath 🚀</h1>
+            <p class="text-gray-700 text-sm">මගේ Arduino Games සහ Hardware Projects වෙබ් අඩවියට සාදරයෙන් පිළිගනිමි. Feedback එවීමට පහතින් Google මඟින් Log වන්න.</p>
+            <p class="text-xs text-brandTeal font-bold">✉️ Admin Email: dimaththulsara@gmail.com</p>
+        </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects-section">
-        <h2 class="lang-si">මගේ Arduino Projects සහ Games</h2>
-        <h2 class="lang-en hidden">My Arduino Projects & Games</h2>
-
-        <div class="projects-grid">
+        <!-- Wix Style Google Auth / Comment Section -->
+        <section id="contact" class="max-w-md mx-auto bg-white border border-gray-200 p-8 rounded-2xl shadow-xl text-center space-y-6">
             
-            <!-- Project Card -->
-            <div class="project-card">
-                <span class="badge">Game</span>
+            <!-- Login View -->
+            <div id="loginBox" class="space-y-4">
+                <h3 class="text-2xl font-extrabold text-gray-900">Sign up / Log in</h3>
+                <p class="text-xs text-gray-500">Continue securely with your Google Account</p>
                 
-                <img src="game.jfif" alt="Arduino Game" style="width:100%; border-radius:8px; margin-bottom:15px; height: 180px; object-fit: cover;">
-
-                <h3 class="lang-si">OLED Screen Tabletop Game</h3>
-                <h3 class="lang-en hidden">OLED Screen Tabletop Game</h3>
-                
-                <p class="lang-si">Arduino Uno සහ OLED Display භාවිතයෙන් නිර්මාණය කළ Game එකක්.</p>
-                <p class="lang-en hidden">Interactive mini-game built using Arduino Uno and OLED Display.</p>
-                
-                <h4>Components Used:</h4>
-                <ul>
-                    <li>Arduino Uno / Nano</li>
-                    <li>0.96" OLED Display (I2C)</li>
-                    <li>Push Buttons</li>
-                </ul>
-
-                <!-- 🔌 Wiring Guide -->
-                <div class="wiring-box">
-                    <h4 style="color: #38bdf8; margin-bottom: 8px;">🔌 වයර් සම්බන්ධ කරන හැටි (Wiring Guide):</h4>
-                    <ul>
-                        <li><b>OLED VCC</b> ➔ Arduino 5V හෝ 3.3V වෙත</li>
-                        <li><b>OLED GND</b> ➔ Arduino GND වෙත</li>
-                        <li><b>OLED SCL</b> ➔ Arduino A5 (သို့မဟုတ် SCL Pin) වෙත</li>
-                        <li><b>OLED SDA</b> ➔ Arduino A4 (သို့မဟုတ် SDA Pin) වෙත</li>
-                        <li><b>Push Button</b> ➔ Digital Pins (උදා: Pin 2 සහ GND අතර)</li>
-                    </ul>
-                </div>
-
-                <!-- 📜 Arduino Code -->
-                <details style="margin-bottom: 15px;">
-                    <summary style="color:#00d2df; cursor:pointer; font-weight: bold; margin-bottom: 8px;">📜 View Arduino Code</summary>
-                    <pre style="background:#0f172a; padding:12px; border-radius:6px; color:#a5f3fc; overflow-x:auto; font-size: 0.8rem; max-height: 200px;">
-<code>
-#include &lt;Wire.h&gt;
-#include &lt;Adafruit_GFX.h&gt;
-#include &lt;Adafruit_SSD1306.h&gt;
-
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 64
-#define OLED_RESET    -1
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-
-void setup() {
-  Serial.begin(9600);
-  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
-    for(;;);
-  }
-  display.clearDisplay();
-  display.setTextSize(1);
-  display.setTextColor(SSD1306_WHITE);
-  display.setCursor(10, 25);
-  display.println(F("Arduino Game Start!"));
-  display.display();
-}
-
-void loop() {
-  // Game loop code here
-}
-</code>
-                    </pre>
-                </details>
-
-                <div class="card-links">
-                    <a href="game.jfif" target="_blank" class="btn">View Full Photo</a>
-                </div>
+                <button type="button" onclick="loginWithGoogle()" class="w-full flex items-center justify-center gap-3 border border-gray-300 hover:bg-gray-50 py-3 rounded-lg text-sm font-semibold text-gray-700 transition shadow-sm">
+                    <i class="fa-brands fa-google text-red-500 text-lg"></i> Continue with Google
+                </button>
             </div>
 
-        </div>
-    </section>
+            <!-- Comment Box (Hidden until logged in) -->
+            <div id="commentSection" class="hidden space-y-4 text-left">
+                <div class="flex justify-between items-center bg-gray-100 p-3 rounded-lg border border-gray-200">
+                    <span id="userDisplay" class="text-xs font-bold text-brandTeal">Welcome</span>
+                    <button onclick="logoutUser()" class="text-xs text-rose-600 hover:underline font-semibold">Logout</button>
+                </div>
 
-    <!-- 👤 User Login & Comment System -->
-    <section id="contact" style="padding: 50px 8%; text-align: center; background: rgba(30, 41, 59, 0.6); border-top: 1px solid #334155; margin-top: 40px;">
-        <h2 class="lang-si" style="color: #f1f5f9; margin-bottom: 15px;">ප්‍රශ්න සහ සාකච්ඡා (Q&A Community)</h2>
-        <h2 class="lang-en hidden" style="color: #f1f5f9; margin-bottom: 15px;">Q&A Community</h2>
-        
-        <p class="lang-si" style="color: #94a3b8; margin-bottom: 30px;">ඔබගේ නම සහ රට ඇතුළත් කර Login වී ප්‍රශ්න යොමු කරන්න.</p>
-        <p class="lang-en hidden" style="color: #94a3b8; margin-bottom: 30px;">Enter your name and country to post comments.</p>
+                <!-- Formspree Integration to send message to dimaththulsara@gmail.com -->
+                <form id="commentForm" action="https://formspree.io/f/your_form_id" method="POST" class="space-y-3">
+                    <input type="hidden" name="sender_email" id="formSenderEmail">
+                    <input type="hidden" name="sender_name" id="formSenderName">
 
-        <div style="max-width: 600px; margin: 0 auto; text-align: left;">
-            
-            <!-- Step 1: Login Box (නම සහ රට දමා ඇතුළුවීමට) -->
-            <div id="loginBox" style="background: #1e293b; padding: 20px; border-radius: 8px; border: 1px solid #334155; margin-bottom: 30px;">
-                <h3 style="color: #38bdf8; margin-bottom: 15px; font-size: 1.1rem;">👤 ගිණුමකට පිවිසෙන්න (Enter Details)</h3>
-                <form id="loginForm" style="display: flex; flex-direction: column; gap: 12px;">
-                    <input type="text" id="loginName" placeholder="ඔබගේ නම / Your Name" required style="padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff;">
-                    <input type="text" id="loginCountry" placeholder="ඔබගේ රට / Your Country (උදා: Sri Lanka)" required style="padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff;">
-                    <button type="submit" class="btn" style="padding: 10px; cursor: pointer; border: none; font-size: 0.95rem; border-radius: 6px;">Login & Continue</button>
+                    <textarea name="message" id="userComment" rows="3" required maxlength="500" placeholder="Type your project question or feedback..." class="w-full border border-gray-300 rounded-lg p-3 text-xs focus:outline-none focus:border-brandTeal"></textarea>
+
+                    <div class="bg-gray-50 p-2.5 rounded-lg border border-gray-200 flex items-center justify-between text-xs">
+                        <label class="flex items-center gap-2 cursor-pointer text-gray-600">
+                            <input type="checkbox" id="notRobot" required class="w-4 h-4 rounded text-brandTeal">
+                            <span>I'm not a robot</span>
+                        </label>
+                        <span class="text-[10px] text-gray-400">reCAPTCHA</span>
+                    </div>
+
+                    <button type="submit" class="w-full bg-brandTeal hover:bg-brandTealDark text-white font-bold py-2.5 rounded-lg text-xs transition">
+                        Post Comment & Notify Admin
+                    </button>
                 </form>
             </div>
 
-            <!-- Step 2: Comment Box (Login වූ පසු පෙන්වන කොටස - මුලදී වැසී ඇත) -->
-            <div id="commentSection" style="display: none;">
-                <div style="background: #1e293b; padding: 15px; border-radius: 8px; border: 1px solid #334155; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
-                    <span style="color: #38bdf8; font-weight: bold;" id="userDisplay">Welcome</span>
-                    <button onclick="logoutUser()" style="background: transparent; border: 1px solid #ef4444; color: #ef4444; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">Logout</button>
-                </div>
+            <div id="commentsList" class="space-y-3 pt-4 border-t border-gray-100 text-left"></div>
+        </section>
+    </main>
 
-                <form id="commentForm" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
-                    <textarea id="userComment" rows="4" placeholder="ඔබගේ ප්‍රශ්නය හෝ අදහස මෙහි ලියන්න... / Type your question here..." required style="padding: 12px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #fff;"></textarea>
-                    
-                    <button type="submit" class="btn" style="padding: 12px; cursor: pointer; border: none; font-size: 1rem; border-radius: 6px;">ප්‍රශ්නය යොමු කරන්න / Post Comment</button>
-                </form>
-            </div>
-
-            <!-- Comments Display Area (ප්‍රශ්න වැටෙන තැන) -->
-            <div id="commentsList" style="display: flex; flex-direction: column; gap: 15px; text-align: left;">
-                <!-- Comments will appear here -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p class="lang-si">© 2026 Arduino Projects - සියලුම හිමිකම් ඇවිරිණි.</p>
-        <p class="lang-en hidden">© 2026 Arduino Projects - All Rights Reserved.</p>
-    </footer>
-
-    <!-- ⚙️ JavaScript for Login & Comments -->
+    <!-- Firebase Script Logic -->
     <script>
-        let currentUser = { name: '', country: '' };
+        // Your actual Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDEJtix_LjtlOJdu5dLQSfvvOEBPyc4va0",
+            authDomain: "arduinolab-5c1ba.firebaseapp.com",
+            projectId: "arduinolab-5c1ba",
+            storageBucket: "arduinolab-5c1ba.firebasestorage.app",
+            messagingSenderId: "384819898225",
+            appId: "1:384819898225:web:885ff890d4ddb059eab8d0",
+            measurementId: "G-06BZCW81EL"
+        };
 
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            currentUser.name = document.getElementById('loginName').value;
-            currentUser.country = document.getElementById('loginCountry').value;
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
 
-            // Hide login box, show comment section
-            document.getElementById('loginBox').style.display = 'none';
-            document.getElementById('commentSection').style.display = 'block';
-            document.getElementById('userDisplay').innerText = `👤 ${currentUser.name} (${currentUser.country})`;
-        });
+        let currentUser = { email: '', name: '', isAdmin: false };
 
-        function logoutUser() {
-            document.getElementById('loginBox').style.display = 'block';
-            document.getElementById('commentSection').style.display = 'none';
-            document.getElementById('loginName').value = '';
-            document.getElementById('loginCountry').value = '';
+        // Google Popup Login Function
+        window.loginWithGoogle = function() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider).then((result) => {
+                const user = result.user;
+                currentUser.email = user.email;
+                currentUser.name = user.displayName;
+
+                // Check if you are the admin based on your email
+                if (user.email === "dimaththulsara@gmail.com") {
+                    currentUser.isAdmin = true;
+                }
+
+                document.getElementById('formSenderEmail').value = currentUser.email;
+                document.getElementById('formSenderName').value = currentUser.name;
+
+                document.getElementById('loginBox').classList.add('hidden');
+                document.getElementById('commentSection').classList.remove('hidden');
+                updateUserHeader();
+            }).catch((error) => {
+                alert("Google Login Failed: " + error.message);
+            });
+        };
+
+        window.logoutUser = function() {
+            auth.signOut().then(() => {
+                currentUser = { email: '', name: '', isAdmin: false };
+                document.getElementById('loginBox').classList.remove('hidden');
+                document.getElementById('commentSection').classList.add('hidden');
+                document.getElementById('headerUserStatus').innerText = "Not Logged In";
+            });
+        };
+
+        function updateUserHeader() {
+            let badge = currentUser.isAdmin ? ' <span class="bg-amber-400 text-black text-[9px] px-1.5 py-0.5 rounded font-black ml-1">ADMIN</span>' : '';
+            document.getElementById('userDisplay').innerHTML = `👤 ${currentUser.name} (${currentUser.email})${badge}`;
+            document.getElementById('headerUserStatus').innerText = currentUser.name;
         }
 
+        // Comment form submission
         document.getElementById('commentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const text = document.getElementById('userComment').value;
+            const text = document.getElementById('userComment').value.trim();
+            if(!text) return;
+
+            const cmtElement = document.createElement('div');
+            cmtElement.className = "bg-gray-50 p-3 rounded-lg border border-gray-200 text-xs space-y-1";
+            let badgeHtml = currentUser.isAdmin ? '<span class="bg-amber-400 text-black text-[9px] px-1.5 py-0.5 rounded font-black ml-1">ADMIN</span>' : '';
             
-            const commentBox = document.createElement('div');
-            commentBox.style.background = '#1e293b';
-            commentBox.style.padding = '15px';
-            commentBox.style.borderRadius = '8px';
-            commentBox.style.border = '1px solid #334155';
-            
-            commentBox.innerHTML = `
-                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                    <h4 style="color: #38bdf8; font-size: 0.95rem;">${currentUser.name} <span style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">(${currentUser.country})</span></h4>
-                    <span style="font-size: 0.75rem; color: #64748b;">Just now</span>
+            cmtElement.innerHTML = `
+                <div class="flex justify-between font-bold text-gray-800">
+                    <span>${currentUser.name}${badgeHtml}</span>
+                    <span class="text-[10px] text-gray-400">Just now</span>
                 </div>
-                <p style="color: #cbd5e1; font-size: 0.95rem;">${text}</p>
+                <p class="text-gray-600">${text}</p>
             `;
-            
-            document.getElementById('commentsList').prepend(commentBox);
+
+            document.getElementById('commentsList').prepend(cmtElement);
             document.getElementById('userComment').value = '';
+            document.getElementById('notRobot').checked = false;
         });
     </script>
 </body>

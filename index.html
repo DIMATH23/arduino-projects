@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Gaming & Projects</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="logo">⚡ Arduino Lab</div>
+        <nav>
+            <ul>
+                <li><a href="#about" class="lang-si">මම ගැන</a><a href="#about" class="lang-en hidden">About</a></li>
+                <li><a href="#projects" class="lang-si">ව්‍යාපෘති / Games</a><a href="#projects" class="lang-en hidden">Projects & Games</a></li>
+                <li><a href="#contact" class="lang-si">සම්බන්ධ වන්න</a><a href="#contact" class="lang-en hidden">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="lang-toggle">
+            <button id="btn-si" class="active" onclick="switchLang('si')">සිංහල</button>
+            <button id="btn-en" onclick="switchLang('en')">English</button>
+        </div>
+    </header>
+
+    <!-- Hero / About Section -->
+    <section id="about" class="hero">
+        <h1 class="lang-si">ආයුබෝවන්! මගේ Arduino Games & Projects වෙබ් අඩවියට සාදරයෙන් පිළිගනිමි 🚀</h1>
+        <h1 class="lang-en hidden">Welcome to My Arduino Games & Projects World 🚀</h1>
+        
+        <p class="lang-si">මම Arduino, Microcontrollers සහ Sensor එකතු කරමින් නිර්මාණය කළ Games සහ Hardware Projects මෙතැනින් ඔබට බලාගත හැක.</p>
+        <p class="lang-en hidden">Explore my collection of custom Arduino games, robotics, and microcontroller hardware projects.</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <h2 class="lang-si">මගේ Arduino Projects සහ Games</h2>
+        <h2 class="lang-en hidden">My Arduino Projects & Games</h2>
+
+        <div class="projects-grid">
+            
+            <!-- Project Card 1 -->
+            <div class="project-card">
+                <span class="badge">Game</span>
+                <h3 class="lang-si">OLED Screen Tabletop Game</h3>
+                <h3 class="lang-en hidden">OLED Screen Tabletop Game</h3>
+                
+                <p class="lang-si">Arduino Uno, OLED Display සහ Ultrasonic Sensors භාවිතයෙන් නිර්මාණය කළ Game එකක්.</p>
+                <p class="lang-en hidden">Interactive mini-game built using Arduino Uno, OLED Display, and Ultrasonic sensors.</p>
+                
+                <h4>Components Used:</h4>
+                <ul>
+                    <li>Arduino Uno / ESP32</li>
+                    <li>0.96" OLED Display (I2C)</li>
+                    <li>Push Buttons / Sensors</li>
+                </ul>
+
+                <div class="card-links">
+                    <a href="#" class="btn">Source Code</a>
+                    <a href="#" class="btn btn-outline">Circuit Diagram</a>
+                </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="project-card">
+                <span class="badge">Hardware</span>
+                <h3 class="lang-si">Wi-Fi Web Controlled Robot / Car</h3>
+                <h3 class="lang-en hidden">Wi-Fi Web Controlled Robot / Car</h3>
+                
+                <p class="lang-si">ESP32 සහ L298N Motor Driver භාවිතයෙන් Web Dashboard එකක් මගින් පාලනය වන වාහනයක්.</p>
+                <p class="lang-en hidden">Web dashboard-controlled vehicle powered by ESP32 and L298N Motor Driver.</p>
+
+                <h4>Components Used:</h4>
+                <ul>
+                    <li>ESP32 Development Board</li>
+                    <li>L298N Motor Driver</li>
+                    <li>Ultrasonic Sensor & Horn</li>
+                </ul>
+
+                <div class="card-links">
+                    <a href="#" class="btn">Source Code</a>
+                    <a href="#" class="btn btn-outline">Circuit Diagram</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="lang-si">© 2026 Arduino Projects - සියලුම හිමිකම් ඇවිරිණි.</p>
+        <p class="lang-en hidden">© 2026 Arduino Projects - All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
